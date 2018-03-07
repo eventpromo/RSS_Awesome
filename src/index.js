@@ -1,11 +1,31 @@
 // DO WHATEVER YOU WANT HERE
 
-const createEnumerableProperty = () => {};
-const createNotEnumerableProperty = () => {};
-const createProtoMagicObject = () => {};
-const incrementor = () => {};
+const createEnumerableProperty = (name) => {    
+    return name;    
+};
+const createNotEnumerableProperty = () => {    
+    return Symbol();
+    //return Object.defineProperty({}, name, {enumerable: false});    
+};
+const createProtoMagicObject = () => { 
+    function Test(){};   
+    Test.__proto__ = Test.prototype;
+    return Test;
+};
+
+const createIncrementer = () => {
+    var counter = 0;
+    function Incrementor(){
+        this.count = ++counter;
+        return Incrementor;
+    }
+    Incrementor.valueOf = function(){
+        return this.count;
+    }
+    return Incrementor;
+};
+const incrementor = createIncrementer();
 const asyncIncrementor = () => {};
-const createIncrementer = () => {};
 
 // return same argument not earlier than in one second, and not later, than in two
 const returnBackInSecond = () => {};
